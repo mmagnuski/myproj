@@ -47,6 +47,8 @@ db = db_copybase(db, opt);
 % get an EEG
 fprintf('recovering EEG...\n');
 EEG = recoverEEG(db, 12, 'interp', 'local');
+% use only channels present in the model
+EEG.chanlocs = EEG.chanlocs([1:61, 64]);
 
 % copy elec pos to db:
 for r = 1:length(db)
