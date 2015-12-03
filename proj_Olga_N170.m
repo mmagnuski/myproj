@@ -1,16 +1,12 @@
 % proj_OlgaN170
 
+btls = {'D:\DATA\GIT\braintools\', 'E:\Programy\braintools'};
+exists_dir = cellfun(@(x) isdir(x), btls);
+btls = btls(exists_dir);
+btls = btls{1};
+addpath(btls);
 
-PTH = 'D:\Dropbox\CURRENT PROJECTS\N170 Olga';
-dtpth = 'D:\DATA\N170 Olga';
-fls = dir(fullfile(dtpth, '*.set'));
-
-% add paths
-addpath(fullfile(PTH, 'code'));
-addpath('D:\DATA\maskitsweet\');
-addpath('D:\DATA\GIT\braintools\');
-
-% init braintools
+% init braintools, eegDb and eeglab
 braintools;
 eegDb;
 eeg_path('add');
