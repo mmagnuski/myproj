@@ -55,6 +55,8 @@ for r = 1:length(db)
     db(r).datainfo.chanlocs = EEG.chanlocs;
 end
 catch
+    EEG = pop_loadset(['C:\Users\Ola\Dropbox\', ...
+        'N170 Olga\SET\faces_g_46.set']);
 end
 
 % this is old, not used now
