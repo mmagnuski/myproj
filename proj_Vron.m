@@ -1,16 +1,22 @@
 % paths
-addpath('E:\Programy\braintools');
-braintools
 eegDb
+pth = get_valid_path({'D:\DATA\GIT\braintools', ...
+	'E:\Programy\braintools'});
+addpath(pth);
+braintools
 
 p = project();
 p.pth('tfr', 'E:\PROJ\Vron\tfr');
-p.pth('code', 'E:\PROJ\Vron\code');
-p.pth('res', 'E:\PROJ\Vron\res');
+p.pth('code', {['D:\Dropbox\CURRENT PROJECTS\',...
+    'Sarenka\Vron\code'], 'E:\PROJ\Vron\code'});
+p.pth('res', {['D:\Dropbox\CURRENT PROJECTS\',...
+    'Sarenka\Vron\res'], 'E:\PROJ\Vron\res'});
 
 p.addp('code');
-p.cd('tfr');
-fls = dir('*.mat');
+try
+    p.cd('tfr');
+    fls = dir('*.mat');
+end
 
 msk = @(tfr, chan) maskitsweet(squeeze(...
     tfr.powspctrm(chan,:, :)), [], ...
