@@ -2,6 +2,7 @@
 
 % add packages
 eegDb;
+eeg_path('add');
 fprintf('adding paths to braintools...\n');
 tmp_pth = get_valid_path({'D:\DATA\GIT\braintools', ...
 	'E:\Programy\braintools'});
@@ -11,7 +12,7 @@ braintools;
 % set up project
 p = project();
 PTH = {'D:\Dropbox\CURRENT PROJECTS\DiamDec 2013-2014\', ...
-	'E:\PROJ\DiamDec\'};
+	'C:\Users\Ola\Dropbox\Sarenka\Modele'};
 p.pth('proj', PTH);
 
 
@@ -20,8 +21,10 @@ temp = {'D:\Dropbox\CURRENT PROJECTS\Sarenka\Modele', ...
 p.pth('mdl', temp);
 
 % add some other paths:
-addpath(genpath(fullfile(p('proj'), 'scripts')));
-addpath(genpath(fullfile(p('proj'), 'code')));
+p.pth('scripts', fullfile(p('proj'), 'scripts'));
+p.pth('code', fullfile(p('proj'), 'code'));
+addpath(genpath(p('scripts')));
+addpath(genpath(p('code')));
 
 try
 addp = ['D:\Dropbox\CURRENT PROJECTS\Decyzyjne ',...
@@ -54,10 +57,16 @@ EEG.chanlocs = EEG.chanlocs([1:61, 64]);
 for r = 1:length(db)
     db(r).datainfo.chanlocs = EEG.chanlocs;
 end
-catch
+catch %#ok<CTCH>
     EEG = pop_loadset(['C:\Users\Ola\Dropbox\', ...
         'N170 Olga\SET\faces_g_46.set']);
 end
+
+chns = 1:64;
+chns([62,63]) = [];
+chns = arrayfun(@(x) ['E', num2str(x)], chns, 'uni', false);
+chns = find_elec(EEG, chns);
+EEG.chanlocs = EEG.chanlocs(chns);
 
 % this is old, not used now
 % fprintf('loading stat and alldata...\n');
@@ -74,4 +83,4 @@ load('stat - fin model (absDiff x strat + cueNum x strat).mat');
 p.protect({'p', 'db', 'EEG', 'PTH', 'stat', 'trial_info', ...
 	'alldata'});
 % p.cl(); % <- this doesn't work so well...
-clear opt r temp* addp
+clear opt r temp* addp chns
