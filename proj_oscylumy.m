@@ -1,15 +1,17 @@
 % setup
 % -----
+eegDb
 braintools
-eeg_path('add');
+eeg_path('add'); % seems that eeg_path is not in braintools, need to add!
 
 p = project;
-p.pth('proj', {'E:\PROJ\oscylumy'});
-p.pth('data', {'D:\DATA\PAC', 'E:\PROJ\PAC'});
+p.pth('proj', {'E:\PROJ\oscylumy', 'D:\proj\oscylumy'});
+p.pth('data', {'D:\DATA\PAC', 'D:\DANE\PAC', 'E:\PROJ\PAC'});
 
 p.pth('set', 'SET', 'data');
 p.pth('pac', 'raven pac', 'data');
 p.pth('code', 'code\mat', 'proj');
+p.pth('fig', 'fig', 'proj');
 
 % add path to code files
 p.addp('code');
