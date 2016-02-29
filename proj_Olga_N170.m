@@ -1,10 +1,12 @@
 % proj_OlgaN170
-
-btls = {'D:\DATA\GIT\braintools\', 'E:\Programy\braintools'};
-exists_dir = cellfun(@(x) isdir(x), btls);
-btls = btls(exists_dir);
-btls = btls{1};
-addpath(btls);
+has_btls = which('braintools');
+if ~has_btls
+    btls = {'D:\DATA\GIT\braintools\', 'E:\Programy\braintools', };
+    exists_dir = cellfun(@(x) isdir(x), btls);
+    btls = btls(exists_dir);
+    btls = btls{1};
+    addpath(btls);
+end
 
 % init braintools, eegDb and eeglab
 braintools;
