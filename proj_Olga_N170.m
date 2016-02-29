@@ -16,7 +16,7 @@ eeg_path('add');
 p = project();
 
 p.pth('root', {'D:\Dropbox\CURRENT PROJECTS\N170 Olga', ...
-    'C:\Users\Ola\Dropbox\N170 Olga'});
+    'C:\Users\Ola\Dropbox\N170 Olga', 'D:\Dropbox\N170 Olga'});
 p.pth('code', fullfile(p('root'), 'code'));
 p.pth('data', fullfile(p('root'), 'SET'));
 
