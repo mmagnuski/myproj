@@ -29,6 +29,6 @@ cnt = @(x) x(1):x(2);
 dtpth = p('data');
 loads = @(x) pop_loadset(fullfile(dtpth, x));
 try %#ok<TRYNC>
-EEG = ld(fls{1});
+EEG = loads(fls(1).name);
 msk = @(x, m) maskitsweet(x, m, 'Time', EEG.times);
 end
