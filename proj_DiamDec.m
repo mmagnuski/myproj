@@ -79,6 +79,11 @@ trial_info = dataset('file', 'TrialInfo.csv', 'Delimiter', ',');
 load('eeg.mat');
 load('stat - fin model (absDiff x strat + cueNum x strat).mat');
 
+% copy channel labels to stat
+for r = 1:length(stat)
+    stat{r}.label = {EEG.chanlocs.labels};
+end
+
 % protect variables
 p.protect({'p', 'db', 'EEG', 'PTH', 'stat', 'trial_info', ...
 	'alldata'});

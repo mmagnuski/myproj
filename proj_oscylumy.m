@@ -15,6 +15,8 @@ p.pth('fig', 'fig', 'proj');
 
 % add path to code files
 p.addp('code');
+% move to oscylumy
+p.cd('proj');
 
 % load eeg
 % --------

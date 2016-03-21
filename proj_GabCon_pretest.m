@@ -1,12 +1,16 @@
 % project GabCon 2015 - pretest
 
 % setup paths
-eegDb_setup();
+eegDb
+braintools
 eeg_path('add');
 
 % project location
-PTH = ['D:\DATA\GabCon 2014-2015\Pretests\',...
-    'EEG pretest - Miko\'];
+p = project();
+p.pth('root', {'E:\PROJ\GabCon'});
+p.pth('code', 'code', 'root');
+p.pth('raw', 'raw', 'root');
+p.pth('set', 'SET', 'root');
 
 % channel location file
 chanlocf = ['D:\\Dropbox\\DANE\\LabStuff\\EasyCap info',...
