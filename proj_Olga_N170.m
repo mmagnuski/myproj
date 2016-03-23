@@ -23,7 +23,8 @@ p.pth('data', fullfile(p('root'), 'SET'));
 fls = dir(fullfile(p('data'), '*.set'));
 
 % add paths
-p.addp('code');
+addpath(genpath(p('code')));
+addpath('D:\programy\fieldtrip');
 
 
 % set of anonymous funs:
