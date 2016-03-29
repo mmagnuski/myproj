@@ -5,19 +5,23 @@ eegDb;
 eeg_path('add');
 fprintf('adding paths to braintools...\n');
 tmp_pth = get_valid_path({'D:\DATA\GIT\braintools', ...
-	'E:\Programy\braintools'});
+	'E:\Programy\braintools', 'D:\proj\braintools'});
 addpath(tmp_pth);
 braintools;
 
 % set up project
 p = project();
 PTH = {'D:\Dropbox\CURRENT PROJECTS\DiamDec 2013-2014\', ...
-	'C:\Users\Ola\Dropbox\Sarenka\Modele'};
+	'C:\Users\Ola\Dropbox\Sarenka\Modele', ...
+    'D:\Dropbox\Sarenka\Modele'};
 p.pth('proj', PTH);
 
+drops = {'D:\Dropbox', 'C:\Users\Ola\Dropbox'};
+p.pth('dropbox', drops);
 
 temp = {'D:\Dropbox\CURRENT PROJECTS\Sarenka\Modele', ...
-    'C:\Users\Ola\Dropbox\Sarenka\Modele'};
+    'C:\Users\Ola\Dropbox\Sarenka\Modele', ...
+    'D:\Dropbox\Sarenka\Modele'};
 p.pth('mdl', temp);
 
 % add some other paths:
@@ -58,8 +62,8 @@ for r = 1:length(db)
     db(r).datainfo.chanlocs = EEG.chanlocs;
 end
 catch %#ok<CTCH>
-    EEG = pop_loadset(['C:\Users\Ola\Dropbox\', ...
-        'N170 Olga\SET\faces_g_46.set']);
+    EEG = pop_loadset(fullfile(p('dropbox'), ...
+        'N170 Olga\SET', 'faces_g_46.set'));
 end
 
 chns = 1:64;
@@ -88,4 +92,4 @@ end
 p.protect({'p', 'db', 'EEG', 'PTH', 'stat', 'trial_info', ...
 	'alldata'});
 % p.cl(); % <- this doesn't work so well...
-clear opt r temp* addp chns
+clear opt r temp* addp chns ans tmp_pth drops
