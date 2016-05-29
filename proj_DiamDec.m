@@ -5,7 +5,8 @@ eegDb;
 eeg_path('add');
 fprintf('adding paths to braintools...\n');
 tmp_pth = get_valid_path({'D:\DATA\GIT\braintools', ...
-	'E:\Programy\braintools', 'D:\proj\braintools'});
+	'E:\Programy\braintools', 'D:\proj\braintools', ...
+    'C:/proj/src/braintools'});
 addpath(tmp_pth);
 braintools;
 
@@ -13,15 +14,18 @@ braintools;
 p = project();
 PTH = {'D:\Dropbox\CURRENT PROJECTS\DiamDec 2013-2014\', ...
 	'C:\Users\Ola\Dropbox\Sarenka\Modele', ...
-    'D:\Dropbox\Sarenka\Modele'};
+    'D:\Dropbox\Sarenka\Modele', ...
+    'C:\Users\swps\Dropbox\Sarenka\Modele'};
 p.pth('proj', PTH);
 
-drops = {'D:\Dropbox', 'C:\Users\Ola\Dropbox'};
+drops = {'D:\Dropbox', 'C:\Users\Ola\Dropbox', ...
+    'C:\Users\swps\Dropbox\CURRENT PROJECTS'};
 p.pth('dropbox', drops);
 
 temp = {'D:\Dropbox\CURRENT PROJECTS\Sarenka\Modele', ...
     'C:\Users\Ola\Dropbox\Sarenka\Modele', ...
-    'D:\Dropbox\Sarenka\Modele'};
+    'D:\Dropbox\Sarenka\Modele',...
+    'C:\Users\swps\Dropbox\Sarenka\Modele'};
 p.pth('mdl', temp);
 
 % add some other paths:
@@ -63,7 +67,7 @@ for r = 1:length(db)
 end
 catch %#ok<CTCH>
     EEG = pop_loadset(fullfile(p('dropbox'), ...
-        'N170 Olga\SET', 'faces_g_46.set'));
+        'N170 Olga\SET', 'faces_e_22.set'));
 end
 
 chns = 1:64;
@@ -85,7 +89,7 @@ load('stat - fin model (absDiff x strat + cueNum x strat).mat');
 
 % copy channel labels to stat
 for r = 1:length(stat)
-    stat{r}.label = {EEG.chanlocs.labels};
+    stat{r}.label = {EEG.chanlocs.labels}; %#ok<SAGROW>
 end
 
 % protect variables
