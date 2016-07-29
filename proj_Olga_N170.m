@@ -24,7 +24,8 @@ fls = dir(fullfile(p('data'), '*.set'));
 
 % add paths
 addpath(genpath(p('code')));
-addpath('D:\programy\fieldtrip');
+addpath(get_valid_path({'D:\programy\fieldtrip', ...
+    'E:\programy\fieldtrip'}));
 
 
 % set of anonymous funs:
